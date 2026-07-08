@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3f7d3a" />
+      <stop offset="100%" stop-color="#2c5c29" />
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d6d6d1" />
+      <stop offset="50%" stop-color="#a8a8a3" />
+      <stop offset="100%" stop-color="#75756f" />
+    </linearGradient>
+    <linearGradient id="shaft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4a4a4a" />
+      <stop offset="100%" stop-color="#1c1c1c" />
+    </linearGradient>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.35)" />
+      <stop offset="100%" stop-color="rgba(0,0,0,0)" />
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#grass)" />
+  <ellipse cx="205" cy="238" rx="78" ry="13" fill="url(#shadow)" />
+
+  <rect x="190" y="55" width="8" height="105" rx="4" fill="url(#shaft)" transform="rotate(10 194 107)" />
+
+  <!-- wedge head: blade like the iron but with a pronounced wide sole flange for bounce -->
+  <path d="M 170,168
+           L 180,128
+           C 182,120 188,116 197,116
+           L 256,120
+           C 264,121 269,127 267,136
+           L 258,168
+           C 275,172 282,182 275,192
+           C 268,202 250,203 234,197
+           L 180,186
+           C 174,184 169,177 170,168 Z"
+        fill="url(#metal)" stroke="#63635e" stroke-width="1.5" />
+
+  <line x1="197" y1="138" x2="248" y2="142" stroke="#63635e" stroke-width="1" opacity="0.6" />
+  <line x1="193" y1="149" x2="243" y2="153" stroke="#63635e" stroke-width="1" opacity="0.6" />
+  <line x1="189" y1="160" x2="238" y2="163" stroke="#63635e" stroke-width="1" opacity="0.6" />
+</svg>

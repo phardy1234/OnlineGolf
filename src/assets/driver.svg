@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3f7d3a" />
+      <stop offset="100%" stop-color="#2c5c29" />
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2f2f0" />
+      <stop offset="45%" stop-color="#cfcfca" />
+      <stop offset="100%" stop-color="#8f8f8a" />
+    </linearGradient>
+    <linearGradient id="shaft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4a4a4a" />
+      <stop offset="100%" stop-color="#1c1c1c" />
+    </linearGradient>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.35)" />
+      <stop offset="100%" stop-color="rgba(0,0,0,0)" />
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#grass)" />
+  <ellipse cx="205" cy="248" rx="95" ry="16" fill="url(#shadow)" />
+
+  <!-- shaft -->
+  <rect x="192" y="45" width="9" height="110" rx="4" fill="url(#shaft)" />
+
+  <!-- driver head: flat face on the left, large bulbous crown to the right -->
+  <path d="M 172,132
+           L 172,178
+           C 172,196 184,210 202,214
+           C 240,222 278,208 292,178
+           C 302,156 296,128 272,112
+           C 250,98 218,96 196,108
+           C 182,115 172,122 172,132 Z"
+        fill="url(#metal)" stroke="#7a7a76" stroke-width="1.5" />
+
+  <!-- face plate accent -->
+  <path d="M 172,134 C 178,130 184,128 190,128" stroke="#7a7a76" stroke-width="1.5" fill="none" opacity="0.7" />
+</svg>

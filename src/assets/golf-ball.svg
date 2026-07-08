@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3f7d3a" />
+      <stop offset="100%" stop-color="#2c5c29" />
+    </linearGradient>
+    <radialGradient id="ballShading" cx="38%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="70%" stop-color="#f2f2f0" />
+      <stop offset="100%" stop-color="#cfcfcb" />
+    </radialGradient>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.35)" />
+      <stop offset="100%" stop-color="rgba(0,0,0,0)" />
+    </radialGradient>
+    <clipPath id="ballClip">
+      <circle cx="200" cy="150" r="78" />
+    </clipPath>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#grass)" />
+
+  <ellipse cx="200" cy="240" rx="90" ry="18" fill="url(#shadow)" />
+
+  <circle cx="200" cy="150" r="78" fill="url(#ballShading)" />
+
+  <g clip-path="url(#ballClip)" fill="#c9c9c5" opacity="0.85">
+    <g id="dimple-row">
+      <circle cx="140" cy="90" r="5" />
+      <circle cx="164" cy="90" r="5" />
+      <circle cx="188" cy="90" r="5" />
+      <circle cx="212" cy="90" r="5" />
+      <circle cx="236" cy="90" r="5" />
+      <circle cx="260" cy="90" r="5" />
+    </g>
+    <use href="#dimple-row" y="24" x="-12" />
+    <use href="#dimple-row" y="48" />
+    <use href="#dimple-row" y="72" x="-12" />
+    <use href="#dimple-row" y="96" />
+    <use href="#dimple-row" y="120" x="-12" />
+    <use href="#dimple-row" y="144" />
+    <use href="#dimple-row" y="168" x="-12" />
+  </g>
+
+  <circle cx="200" cy="150" r="78" fill="none" stroke="#b9b9b4" stroke-width="1" opacity="0.6" />
+</svg>

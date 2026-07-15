@@ -7,7 +7,7 @@ import {
   listProducts,
   updateProduct,
   type NewProduct,
-} from '../firebase/products'
+} from '../api/products'
 import { CATEGORIES, type Category, type Product } from '../types'
 
 const emptyForm: NewProduct = {

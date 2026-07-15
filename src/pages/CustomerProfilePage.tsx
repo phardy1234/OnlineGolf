@@ -2,18 +2,18 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { FormField } from '../components/common/FormField'
 import { LoadingSpinner } from '../components/common/LoadingSpinner'
 import { useAuth } from '../context/AuthContext'
-import { listOrdersForUser } from '../firebase/orders'
-import { updateOwnProfile } from '../firebase/users'
+import { listOrdersForUser } from '../api/orders'
+import { updateOwnProfile } from '../api/users'
 import type { Order } from '../types'
 
 export function CustomerProfilePage() {
-  const { user, profile, refreshProfile } = useAuth()
-  const [displayName, setDisplayName] = useState(profile?.displayName ?? '')
-  const [phone, setPhone] = useState(profile?.phone ?? '')
-  const [line1, setLine1] = useState(profile?.address?.line1 ?? '')
-  const [city, setCity] = useState(profile?.address?.city ?? '')
-  const [postcode, setPostcode] = useState(profile?.address?.postcode ?? '')
-  const [country, setCountry] = useState(profile?.address?.country ?? '')
+  const { user, refreshProfile } = useAuth()
+  const [displayName, setDisplayName] = useState(user?.displayName ?? '')
+  const [phone, setPhone] = useState(user?.phone ?? '')
+  const [line1, setLine1] = useState(user?.address?.line1 ?? '')
+  const [city, setCity] = useState(user?.address?.city ?? '')
+  const [postcode, setPostcode] = useState(user?.address?.postcode ?? '')
+  const [country, setCountry] = useState(user?.address?.country ?? '')
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [orders, setOrders] = useState<Order[]>([])
@@ -21,7 +21,7 @@ export function CustomerProfilePage() {
 
   useEffect(() => {
     if (!user) return
-    listOrdersForUser(user.uid)
+    listOrdersForUser()
       .then(setOrders)
       .finally(() => setOrdersLoading(false))
   }, [user])
@@ -32,7 +32,7 @@ export function CustomerProfilePage() {
     setSaving(true)
     setSaved(false)
     try {
-      await updateOwnProfile(user.uid, {
+      await updateOwnProfile({
         displayName,
         phone,
         address: { line1, city, postcode, country },

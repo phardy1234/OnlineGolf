@@ -1,47 +1,38 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-import type { User } from 'firebase/auth'
-import { subscribeToAuthChanges } from '../firebase/auth'
-import { getUserProfile } from '../firebase/users'
+import { getMe, logOut } from '../api/auth'
 import type { UserProfile } from '../types'
 
 interface AuthContextValue {
-  user: User | null
-  profile: UserProfile | null
+  user: UserProfile | null
   loading: boolean
   refreshProfile: () => Promise<void>
+  logout: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-  const [profile, setProfile] = useState<UserProfile | null>(null)
+  const [user, setUser] = useState<UserProfile | null>(null)
   const [loading, setLoading] = useState(true)
 
-  async function loadProfile(u: User) {
-    const p = await getUserProfile(u.uid)
-    setProfile(p)
-  }
-
   useEffect(() => {
-    const unsubscribe = subscribeToAuthChanges(async (u) => {
-      setUser(u)
-      if (u) {
-        await loadProfile(u)
-      } else {
-        setProfile(null)
-      }
-      setLoading(false)
-    })
-    return unsubscribe
+    getMe()
+      .then(setUser)
+      .finally(() => setLoading(false))
   }, [])
 
   async function refreshProfile() {
-    if (user) await loadProfile(user)
+    const me = await getMe()
+    setUser(me)
+  }
+
+  async function logout() {
+    await logOut()
+    setUser(null)
   }
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading, refreshProfile }}>
+    <AuthContext.Provider value={{ user, loading, refreshProfile, logout }}>
       {children}
     </AuthContext.Provider>
   )

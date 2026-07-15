@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ProductGrid } from '../components/product/ProductGrid'
 import { LoadingSpinner } from '../components/common/LoadingSpinner'
-import { listProductsByCategory } from '../firebase/products'
+import { listProductsByCategory } from '../api/products'
 import { CATEGORIES, type Category, type Product } from '../types'
 
 export function CategoryPage() {

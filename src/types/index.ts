@@ -26,7 +26,7 @@ export interface Address {
 }
 
 export interface UserProfile {
-  uid: string
+  id: string
   email: string
   displayName: string
   role: Role

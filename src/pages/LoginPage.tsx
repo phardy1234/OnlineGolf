@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useLocation, useNavigate, type Location } from 'react-router-dom'
 import { FormField } from '../components/common/FormField'
-import { logIn } from '../firebase/auth'
+import { logIn } from '../api/auth'
+import { useAuth } from '../context/AuthContext'
 
 export function LoginPage() {
   const [email, setEmail] = useState('')
@@ -10,6 +11,7 @@ export function LoginPage() {
   const [submitting, setSubmitting] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+  const { refreshProfile } = useAuth()
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -17,6 +19,7 @@ export function LoginPage() {
     setSubmitting(true)
     try {
       await logIn(email, password)
+      await refreshProfile()
       const from = (location.state as { from?: Location } | null)?.from
       navigate(from ? `${from.pathname}${from.search}` : '/', { replace: true })
     } catch {

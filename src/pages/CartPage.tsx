@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { CartItemRow } from '../components/cart/CartItemRow'
 import { useAuth } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
-import { placeOrder } from '../firebase/orders'
+import { placeOrder } from '../api/orders'
 
 export function CartPage() {
   const { items, total, clear } = useCart()
@@ -20,7 +20,7 @@ export function CartPage() {
     }
     setPlacing(true)
     try {
-      const orderId = await placeOrder(user.uid, items, total)
+      const orderId = await placeOrder(items, total)
       setPlacedOrderId(orderId)
       clear()
     } finally {

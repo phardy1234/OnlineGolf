@@ -9,12 +9,12 @@ interface ProtectedRouteProps {
 }
 
 export function ProtectedRoute({ children, requireRole }: ProtectedRouteProps) {
-  const { user, profile, loading } = useAuth()
+  const { user, loading } = useAuth()
   const location = useLocation()
 
   if (loading) return <LoadingSpinner />
   if (!user) return <Navigate to="/login" state={{ from: location }} replace />
-  if (requireRole && profile?.role !== requireRole) return <Navigate to="/" replace />
+  if (requireRole && user.role !== requireRole) return <Navigate to="/" replace />
 
   return children
 }

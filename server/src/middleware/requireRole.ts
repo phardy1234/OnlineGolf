@@ -1,0 +1,11 @@
+import type { NextFunction, Request, Response } from 'express'
+
+export function requireRole(role: 'admin' | 'customer') {
+  return (req: Request, res: Response, next: NextFunction) => {
+    if (req.user?.role !== role) {
+      res.status(403).json({ error: 'Forbidden' })
+      return
+    }
+    next()
+  }
+}

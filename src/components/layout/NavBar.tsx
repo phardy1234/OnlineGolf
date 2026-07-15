@@ -1,11 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { useCart } from '../../context/CartContext'
-import { logOut } from '../../firebase/auth'
 import { CATEGORIES } from '../../types'
 
 export function NavBar() {
-  const { user, profile } = useAuth()
+  const { user, logout } = useAuth()
   const { count } = useCart()
 
   return (
@@ -28,11 +27,11 @@ export function NavBar() {
           <NavLink to="/cart" className="navbar__cart">
             Cart{count > 0 ? ` (${count})` : ''}
           </NavLink>
-          {profile?.role === 'admin' && <NavLink to="/admin">Admin</NavLink>}
+          {user?.role === 'admin' && <NavLink to="/admin">Admin</NavLink>}
           {user ? (
             <>
               <NavLink to="/profile">Profile</NavLink>
-              <button type="button" className="link-button" onClick={() => logOut()}>
+              <button type="button" className="link-button" onClick={() => logout()}>
                 Log Out
               </button>
             </>

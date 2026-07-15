@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FormField } from '../components/common/FormField'
-import { signUp } from '../firebase/auth'
+import { signUp } from '../api/auth'
+import { useAuth } from '../context/AuthContext'
 
 export function SignupPage() {
   const [displayName, setDisplayName] = useState('')
@@ -10,6 +11,7 @@ export function SignupPage() {
   const [error, setError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const navigate = useNavigate()
+  const { refreshProfile } = useAuth()
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -17,6 +19,7 @@ export function SignupPage() {
     setSubmitting(true)
     try {
       await signUp(email, password, displayName)
+      await refreshProfile()
       navigate('/', { replace: true })
     } catch {
       setError('Could not create your account. Password must be at least 6 characters.')

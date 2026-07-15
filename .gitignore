@@ -23,12 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# Firebase
-.firebase
-firebase-debug.log
-firestore-debug.log
-ui-debug.log
-functions/node_modules
-functions/lib
-serviceAccountKey.json
-.emulator-data
+# Server
+server/node_modules
+server/dist
+server/.env
+server/test-report.json
+server/test-report.html

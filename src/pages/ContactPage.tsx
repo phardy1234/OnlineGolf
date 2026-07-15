@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { FormField } from '../components/common/FormField'
-import { sendContactMessage } from '../firebase/contact'
+import { sendContactMessage } from '../api/contact'
 
 export function ContactPage() {
   const [name, setName] = useState('')
